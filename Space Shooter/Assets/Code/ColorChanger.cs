@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ColorChanger : MonoBehaviour {
 
+    public Color[] availableColors;
     SpriteRenderer spriteRenderer;
+    float x, y, z;
 
     private void Awake()
     {
@@ -18,6 +20,9 @@ public class ColorChanger : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        x = 0f;
+        y = 0f;
+        z = 0f;
         spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
@@ -52,6 +57,10 @@ public class ColorChanger : MonoBehaviour {
         }
         spriteRenderer.color = newColor;
         transform.localScale += new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0f);
+        x += Time.deltaTime * 0f;
+        y += Time.deltaTime * 0f;
+        z += Time.deltaTime * 120f;
+        transform.rotation = Quaternion.Euler(x, y, z);
     }
 
     private void FixedUpdate()
