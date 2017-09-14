@@ -11,31 +11,21 @@ namespace SpaceShooter
         public const string HorizontalAxisName = "Horizontal";
         public const string VerticalAxisName = "Vertical";
 
-        // Use this for initialization
-        void Start()
-        {
-            //rotationZ = transform.rotation.z;
-        }
-
-        // Update is called once per frame
-        override protected void Update()
-        {
-            try
-            {
-                Move();
-            } catch(System.NotImplementedException exception) {
-                Debug.Log(exception.Message);
-            } catch(System.Exception exception)
-            {
-                Debug.LogException(exception);
-            }
-        }
-
         protected override void Move()
         {
             Vector3 inputVector = new Vector3(Input.GetAxis(HorizontalAxisName), Input.GetAxis(VerticalAxisName));
 
             transform.Translate(-inputVector * Speed * Time.deltaTime);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            
+            if (Input.GetButton("Fire1"))
+            {
+                Shoot();
+            }
         }
     }
 }

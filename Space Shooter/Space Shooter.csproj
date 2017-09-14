@@ -80,11 +80,16 @@
   <ItemGroup>
     <Compile Include="Assets\Examples\ChildClassExample.cs" />
     <Compile Include="Assets\Examples\InheritanceExample.cs" />
+    <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\EnemySpaceship.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IDamageProvider.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IHealth.cs" />
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\PlayerSpaceship.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\SpaceshipBase.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
