@@ -5,6 +5,6 @@ namespace SpaceShooter
 {
     public interface IDamageProvider
     {
-        
+
     }
 }
