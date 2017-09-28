@@ -1,15 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SpaceShooter
 {
-    public abstract class SpaceshipBase : MonoBehaviour
+    // The class must have this component.
+    [RequireComponent(typeof(Health))]
+    public abstract class SpaceshipBase : MonoBehaviour, IDamageReceiver
     {
+        public enum Type
+        {
+            Player,
+            Enemy
+        }
+
+        public abstract Type UnitType { get; }
+
         // SerializeField attribute forces Unity to serialize variable
         // in order to make it editable inside the editor.
         [SerializeField]
         private float _speed = 4f;
 
         private Weapon[] _weapons;
+
+        // An autoproperty. Backing fields are generated automatically by the compiler.
+        public IHealth Health { get; protected set; }
 
         public float Speed
         {
@@ -35,6 +49,7 @@ namespace SpaceShooter
         protected virtual void Awake()
         {
             _weapons = GetComponentsInChildren<Weapon>(includeInactive:true);
+            Health = GetComponent<IHealth>();
         }
 
         protected virtual void Shoot()
@@ -43,6 +58,31 @@ namespace SpaceShooter
             {
                 weapon.Shoot();
             }
+        }
+
+        protected virtual void Die()
+        {
+            if (Health.IsDead) {
+                Destroy(gameObject);
+            }
+        }
+
+        public void TakeDamage(int amount)
+        {
+            Debug.Log("TakeDamage:" + amount);
+            Health.DecreaseHealth(amount);
+            Debug.Log(name + " " + Health.CurrentHealth.ToString());
+            Die();
+        }
+
+        protected Projectile GetPooledProjectile()
+        {
+            return LevelController.Current.GetProjectile(UnitType);
+        }
+
+        protected bool ReturnPooledProjectile(Projectile projectile)
+        {
+            return LevelController.Current.ReturnProjectile(UnitType, projectile);
         }
     }
 }

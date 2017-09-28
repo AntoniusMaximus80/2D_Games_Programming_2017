@@ -40,6 +40,17 @@ namespace SpaceShooter
             _ridigbody2D.MovePosition(newPosition);
         }
 
+        protected void OnTriggerEnter2D(Collider2D other)
+        {
+            IDamageReceiver damageReceiver = other.GetComponent<IDamageReceiver>();
+            if (damageReceiver != null)
+            {
+                Debug.Log("Hit a damage receiver.");
+                damageReceiver.TakeDamage(GetDamage());
+                Destroy(gameObject);
+            }
+        }
+
         public void Launch(Vector2 direction)
         {
             _direction = direction;

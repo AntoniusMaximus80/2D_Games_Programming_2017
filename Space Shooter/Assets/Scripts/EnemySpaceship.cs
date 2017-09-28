@@ -7,6 +7,14 @@ namespace SpaceShooter
 {
     public class EnemySpaceship : SpaceshipBase
     {
+        public override Type UnitType
+        {
+            get
+            {
+                return Type.Enemy;
+            }
+        }
+
         [SerializeField]
         private float _reachDistance = 0.5f;
 
@@ -54,6 +62,12 @@ namespace SpaceShooter
                     _currentMovementTargetIndex = 0;
                 }
             }
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            Shoot();
         }
     }
 }
