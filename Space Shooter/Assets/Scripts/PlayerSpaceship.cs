@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -20,8 +19,6 @@ namespace SpaceShooter
 
         [SerializeField]
         private Text _currentHealthText;
-
-        //private int _framesToOneDamage = 10;
 
         private Health health;
 
@@ -57,9 +54,10 @@ namespace SpaceShooter
             if (_framesToOneDamage == 0) {
                 _framesToOneDamage = 10;
                 health.DecreaseHealth(5);
-            }
+            }*/
+
             // Update the UI text.
-            UpdateCurrentHealthText();*/
+            UpdateCurrentHealthText();
         }
     }
 }

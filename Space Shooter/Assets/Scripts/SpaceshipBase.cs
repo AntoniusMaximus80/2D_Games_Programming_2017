@@ -50,6 +50,10 @@ namespace SpaceShooter
         {
             _weapons = GetComponentsInChildren<Weapon>(includeInactive:true);
             Health = GetComponent<IHealth>();
+            foreach (Weapon weapon in _weapons)
+            {
+                weapon.Init(this);
+            }
         }
 
         protected virtual void Shoot()

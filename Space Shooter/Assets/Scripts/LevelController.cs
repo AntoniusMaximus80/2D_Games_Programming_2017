@@ -39,9 +39,10 @@ namespace SpaceShooter
             if (_enemySpawner == null)
             {
                 Debug.Log("No reference to enemy spawner.");
-                //_enemySpawner = GameObject.FindObjectOfType<Spawner>();
 
                 _enemySpawner = GetComponentInChildren<Spawner>();
+
+                //_enemySpawner = GameObject.FindObjectOfType<Spawner>();
 
                 //_enemySpawner = transform.Find("EnemySpawner").gameObject.GetComponent<Spawner>();
 
@@ -113,7 +114,13 @@ namespace SpaceShooter
 
             if (result != null)
             {
-                return result.GetComponent<Projectile>();
+                Projectile projectile = result.GetComponent<Projectile>();
+                if (projectile == null)
+                {
+                    Debug.LogError("Projectile component could not be found " +
+                    "from the GameObject fetched from the pool.");
+                }
+                return projectile;
             } else
             {
                 return null;
