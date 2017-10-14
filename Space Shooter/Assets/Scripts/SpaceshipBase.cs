@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -64,18 +63,14 @@ namespace SpaceShooter
             }
         }
 
-        protected virtual void Die()
-        {
-            if (Health.IsDead) {
-                Destroy(gameObject);
-            }
-        }
+        protected abstract void Die();
+
 
         public void TakeDamage(int amount)
         {
-            Debug.Log("TakeDamage:" + amount);
+            //Debug.Log("TakeDamage:" + amount);
             Health.DecreaseHealth(amount);
-            Debug.Log(name + " " + Health.CurrentHealth.ToString());
+            //Debug.Log(name + " " + Health.CurrentHealth.ToString());
             Die();
         }
 

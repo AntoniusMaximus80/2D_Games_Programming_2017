@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -65,6 +66,14 @@ namespace SpaceShooter
         {
             base.Update();
             Shoot();
+        }
+
+        protected override void Die()
+        {
+            if (Health.IsDead)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

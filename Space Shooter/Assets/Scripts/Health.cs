@@ -6,9 +6,13 @@ namespace SpaceShooter
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField]
-        private int _minHealth,
-            _maxHealth,
-            _currentHealth;
+        private int _minHealth;
+
+        [SerializeField]
+        private int _maxHealth;
+
+        [SerializeField]
+        private int _currentHealth;
 
         public int CurrentHealth
         {

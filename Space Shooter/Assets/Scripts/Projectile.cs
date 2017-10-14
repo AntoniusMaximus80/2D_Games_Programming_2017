@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -48,8 +46,20 @@ namespace SpaceShooter
             IDamageReceiver damageReceiver = other.GetComponent<IDamageReceiver>();
             if (damageReceiver != null)
             {
-                Debug.Log("Hit a damage receiver.");
-                damageReceiver.TakeDamage(GetDamage());
+                //Debug.Log("Hit a damage receiver.");
+                // Check if the other GameObject is a PlayerSpaceship.
+                if (other.gameObject.GetComponent<PlayerSpaceship>() != null)
+                {
+                    // If it is, check if it is immortal.
+                    if (!other.gameObject.GetComponent<PlayerSpaceship>()._isImmortal)
+                    {
+                        damageReceiver.TakeDamage(GetDamage());
+                    }
+
+                } else
+                {
+                    damageReceiver.TakeDamage(GetDamage());
+                }
             }
             if (!_weapon.DisposeProjectile(this))
             {

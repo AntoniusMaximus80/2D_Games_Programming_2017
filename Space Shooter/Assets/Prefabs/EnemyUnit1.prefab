@@ -148,8 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownTime: 0.5
-  _projectilePrefab: {fileID: 114654705898367352, guid: 75dfbed9ff611c84e9a236a14c676ea3,
-    type: 2}
+  _projectilePrefab: {fileID: 0}
 --- !u!114 &114146551159174816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,8 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldownTime: 0.5
-  _projectilePrefab: {fileID: 114654705898367352, guid: 75dfbed9ff611c84e9a236a14c676ea3,
-    type: 2}
+  _projectilePrefab: {fileID: 0}
 --- !u!114 &114538498287884652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,12 +183,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994748794440584}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f720e18d5109d1a439ede2232f9ca327, type: 3}
+  m_Script: {fileID: 11500000, guid: c389abb57ca603e468f7d5b6f05dce25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _minHealth: 0
-  _maxHealth: 100
-  _currentHealth: 60
+  _maxHealth: 50
+  _currentHealth: 50
 --- !u!212 &212356869610297082
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -231,5 +229,3 @@ SpriteRenderer:
   m_Size: {x: 0.4, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
