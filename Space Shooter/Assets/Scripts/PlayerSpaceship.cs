@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using System;
 
 namespace SpaceShooter
 {
-    public class PlayerSpaceship : SpaceshipBase
+    public class PlayerSpaceship : SpaceshipBase, IHealReceiver
     {
         public override Type UnitType
         {
@@ -23,8 +23,7 @@ namespace SpaceShooter
 
         private Health health;
 
-        // ASSIGNMENT 2 START =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-
+        #region Assignment 2
         public bool _isImmortal = false;
 
         [SerializeField]
@@ -34,9 +33,22 @@ namespace SpaceShooter
         private Text _livesLeftText;
 
         [SerializeField]
-        private float _immortalityTime;
+        private float _immortalityDuration;
 
-        private float _immortalityTimeCountdown;
+        private float _immortalityCountdown;
+        #endregion
+
+        #region Assignment 3
+        [SerializeField]
+        private float _weaponPowerUpDuration;
+
+        private float _weaponPowerUpCountdown;
+
+        private bool _weaponPowerUpActive = false;
+
+        [SerializeField]
+        private GameObject _powerUpWeapon;
+        #endregion
 
         private const int _blinkInterval = 8;
 
@@ -66,15 +78,14 @@ namespace SpaceShooter
             }
         }
 
-        // ASSIGNMENT 2 END =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-
         private void Start()
         {
             health = gameObject.GetComponent<Health>();
             UpdateCurrentHealthText();
             UpdateLivesLeftText();
-            _immortalityTimeCountdown = _immortalityTime;
+            _immortalityCountdown = _immortalityDuration;
             _blinkIntervalCountdown = _blinkInterval;
+            _powerUpWeapon.SetActive(false);
         }
 
         private void UpdateCurrentHealthText()
@@ -124,14 +135,31 @@ namespace SpaceShooter
                 }
 
                 // Mechanics for counting down the immortality time.
-                _immortalityTimeCountdown -= Time.deltaTime;
-                if (_immortalityTimeCountdown <= 0f)
+                _immortalityCountdown -= Time.deltaTime;
+                if (_immortalityCountdown <= 0f)
                 {
-                    _immortalityTimeCountdown = _immortalityTime;
+                    _immortalityCountdown = _immortalityDuration;
                     _isImmortal = false;
                     gameObject.GetComponent<SpriteRenderer>().color = visible;
                 }
             }
+
+            if (_weaponPowerUpActive)
+            {
+                _weaponPowerUpCountdown -= Time.deltaTime;
+                if (_weaponPowerUpCountdown <= 0f)
+                {
+                    _weaponPowerUpActive = false;
+                    _powerUpWeapon.SetActive(false);
+                }
+            }
+        }
+
+        public void ActivateWeaponPowerUp()
+        {
+            _weaponPowerUpActive = true;
+            _weaponPowerUpCountdown = _weaponPowerUpDuration;
+            _powerUpWeapon.SetActive(true);
         }
 
         protected override void Die()
@@ -140,6 +168,11 @@ namespace SpaceShooter
             {
                 PlayerDeath();
             }
+        }
+
+        public void ReceiveHeal(int healAmount)
+        {
+            Health.IncreaseHealth(healAmount);
         }
     }
 }

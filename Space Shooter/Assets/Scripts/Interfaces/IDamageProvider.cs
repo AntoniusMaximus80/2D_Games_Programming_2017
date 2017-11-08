@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace SpaceShooter
+﻿namespace SpaceShooter
 {
     public interface IDamageProvider
     {

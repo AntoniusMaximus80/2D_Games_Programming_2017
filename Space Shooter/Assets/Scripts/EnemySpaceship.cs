@@ -72,6 +72,17 @@ namespace SpaceShooter
         {
             if (Health.IsDead)
             {
+                int shouldISpawnPowerUp = UnityEngine.Random.Range(1, 100);
+                if (shouldISpawnPowerUp <= 30) {
+                    PowerUpSpawner powerUpSpawner = GameObjectPool.FindObjectOfType<PowerUpSpawner>();
+                    int whichPowerUpShouldISpawn = UnityEngine.Random.Range(0, 2);
+                    if (whichPowerUpShouldISpawn == 0) {
+                        powerUpSpawner.SpawnPowerUp(this, "health");
+                    } else
+                    {
+                        powerUpSpawner.SpawnPowerUp(this, "weapon");
+                    }
+                }
                 Destroy(gameObject);
             }
         }
