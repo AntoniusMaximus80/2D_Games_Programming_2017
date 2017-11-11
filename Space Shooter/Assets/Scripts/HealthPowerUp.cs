@@ -2,25 +2,26 @@
 
 namespace SpaceShooter
 {
-    public class HealthPowerUp : PowerUpBase, IHealProvider
+    public class HealthPowerUp : MonoBehaviour, IHealProvider
     {
+        // Adjustable amount of time how long the power up will exist.
         [SerializeField]
-        private float powerUpLifetime;
+        private float _powerUpLifetime;
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
+        // Adjustable amount how much the health power up will heal.
+        [SerializeField]
+        private int healAmount;
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
-            powerUpLifetime -= Time.deltaTime;
-            if (powerUpLifetime <= 0f)
+            _powerUpLifetime -= Time.deltaTime;
+            // When the power up lifetime runs out, destroy the GameObject.
+            if (_powerUpLifetime <= 0f)
             {
                 Destroy(gameObject);
             }
+            // Slowly translate the power up down.
             transform.Translate(Vector2.down * Time.deltaTime * 2f);
         }
 
@@ -43,7 +44,7 @@ namespace SpaceShooter
 
         public int HealTarget()
         {
-            return 20;
+            return healAmount;
         }
     }
 }

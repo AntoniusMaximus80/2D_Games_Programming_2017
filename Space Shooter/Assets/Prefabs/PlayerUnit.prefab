@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 222323445799244296}
   - component: {fileID: 114918490775419354}
   m_Layer: 5
-  m_Name: Lives Left Text
+  m_Name: Weapon Power Up Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,13 +86,30 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4048315697618958}
+  - component: {fileID: 114379513345894362}
+  - component: {fileID: 114764046358551588}
   - component: {fileID: 212202939280023150}
   - component: {fileID: 95795504553505162}
-  - component: {fileID: 114379513345894362}
   - component: {fileID: 60378408240554190}
-  - component: {fileID: 114764046358551588}
   m_Layer: 8
   m_Name: PlayerUnit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1864888755763524
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224260658838383362}
+  - component: {fileID: 222564927689916870}
+  - component: {fileID: 114269314985500284}
+  m_Layer: 5
+  m_Name: Lives Left Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1538035011669608}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -3.7128496, y: 1.2545059, z: 0}
+  m_LocalPosition: {x: 0.403872, y: -2.6337936, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4638981734060458}
@@ -206,6 +223,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114269314985500284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864888755763524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.78676474, g: 0.19090615, b: 0.7703274, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: be44c1c1840d41249b9ea58a038daa76, type: 3}
+    m_FontSize: 12
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Lives
 --- !u!114 &114273136970520560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,8 +304,9 @@ MonoBehaviour:
   _currentHealthText: {fileID: 114273136970520560}
   _isImmortal: 0
   _livesLeft: 5
-  _livesLeftText: {fileID: 114918490775419354}
+  _livesLeftText: {fileID: 114269314985500284}
   _immortalityDuration: 5
+  _weaponPowerUpText: {fileID: 114918490775419354}
   _weaponPowerUpDuration: 5
   _powerUpWeapon: {fileID: 1482720243737856}
 --- !u!114 &114422965394036508
@@ -349,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78676474, g: 0.19090615, b: 0.7703274, a: 1}
+  m_Color: {r: 1, g: 0.7241379, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -358,10 +409,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: be44c1c1840d41249b9ea58a038daa76, type: 3}
-    m_FontSize: 12
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -369,7 +420,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lives
+  m_Text: Weapon
 --- !u!212 &212202939280023150
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -420,6 +471,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521025912572446}
+--- !u!222 &222564927689916870
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864888755763524}
 --- !u!222 &222797334179360970
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -446,6 +503,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!224 &224260658838383362
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1864888755763524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224560042604468188}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: 64, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224477223980074056
 RectTransform:
   m_ObjectHideFlags: 1
@@ -470,16 +545,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521025912572446}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.62999916, y: 0.029999733, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 224560042604468188}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1}
+  m_AnchoredPosition: {x: 0.63, y: 0.03}
   m_SizeDelta: {x: 64, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224560042604468188
@@ -493,6 +568,7 @@ RectTransform:
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_Children:
   - {fileID: 224477223980074056}
+  - {fileID: 224260658838383362}
   - {fileID: 224503145012815554}
   m_Father: {fileID: 4048315697618958}
   m_RootOrder: 1

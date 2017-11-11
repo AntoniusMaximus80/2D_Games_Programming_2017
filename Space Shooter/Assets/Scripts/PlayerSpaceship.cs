@@ -40,6 +40,15 @@ namespace SpaceShooter
 
         #region Assignment 3
         [SerializeField]
+        private Text _weaponPowerUpText;
+
+        private void UpdateWeaponPowerUpText()
+        {
+            int absoluteValue = (int)_weaponPowerUpCountdown;
+            _weaponPowerUpText.text = absoluteValue.ToString();
+        }
+
+        [SerializeField]
         private float _weaponPowerUpDuration;
 
         private float _weaponPowerUpCountdown;
@@ -147,10 +156,13 @@ namespace SpaceShooter
             if (_weaponPowerUpActive)
             {
                 _weaponPowerUpCountdown -= Time.deltaTime;
+                UpdateWeaponPowerUpText();
                 if (_weaponPowerUpCountdown <= 0f)
                 {
                     _weaponPowerUpActive = false;
                     _powerUpWeapon.SetActive(false);
+                    Color transparentTextColor = new Color(255, 185, 0, 0);
+                    _weaponPowerUpText.color = transparentTextColor;
                 }
             }
         }
@@ -160,6 +172,11 @@ namespace SpaceShooter
             _weaponPowerUpActive = true;
             _weaponPowerUpCountdown = _weaponPowerUpDuration;
             _powerUpWeapon.SetActive(true);
+
+            // Update the weapon power up text and make it visible.
+            UpdateWeaponPowerUpText();
+            Color visibleTextColor = new Color(255, 185, 0, 255);
+            _weaponPowerUpText.color = visibleTextColor;
         }
 
         protected override void Die()

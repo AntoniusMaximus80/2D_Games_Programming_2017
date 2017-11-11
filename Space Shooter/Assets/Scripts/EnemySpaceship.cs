@@ -16,6 +16,11 @@ namespace SpaceShooter
         [SerializeField]
         private float _reachDistance = 0.5f;
 
+        [SerializeField]
+        private int _powerUpLikelihood;
+
+        private PowerUpSpawner _powerUpSpawner;
+
         private GameObject[] _movementTargets;
         private int _currentMovementTargetIndex = 0;
 
@@ -62,6 +67,11 @@ namespace SpaceShooter
             }
         }
 
+        private void Start()
+        {
+            _powerUpSpawner = FindObjectOfType<PowerUpSpawner>();
+        }
+
         protected override void Update()
         {
             base.Update();
@@ -73,14 +83,13 @@ namespace SpaceShooter
             if (Health.IsDead)
             {
                 int shouldISpawnPowerUp = UnityEngine.Random.Range(1, 100);
-                if (shouldISpawnPowerUp <= 30) {
-                    PowerUpSpawner powerUpSpawner = GameObjectPool.FindObjectOfType<PowerUpSpawner>();
+                if (shouldISpawnPowerUp <= _powerUpLikelihood) {
                     int whichPowerUpShouldISpawn = UnityEngine.Random.Range(0, 2);
                     if (whichPowerUpShouldISpawn == 0) {
-                        powerUpSpawner.SpawnPowerUp(this, "health");
+                        _powerUpSpawner.SpawnPowerUp(this, "health");
                     } else
                     {
-                        powerUpSpawner.SpawnPowerUp(this, "weapon");
+                        _powerUpSpawner.SpawnPowerUp(this, "weapon");
                     }
                 }
                 Destroy(gameObject);

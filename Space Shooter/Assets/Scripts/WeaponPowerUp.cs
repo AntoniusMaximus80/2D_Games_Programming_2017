@@ -2,19 +2,22 @@
 
 namespace SpaceShooter
 {
-    public class WeaponPowerUp : PowerUpBase
+    public class WeaponPowerUp : MonoBehaviour
     {
+        // Adjustable amount of time how long the power up will exist.
         [SerializeField]
-        private float powerUpLifetime;
+        private float _powerUpLifetime;
 
         // Update is called once per frame
-        void Update()
+        protected void Update()
         {
-            powerUpLifetime -= Time.deltaTime;
-            if (powerUpLifetime <= 0f)
+            _powerUpLifetime -= Time.deltaTime;
+            // When the power up lifetime runs out, destroy the GameObject.
+            if (_powerUpLifetime <= 0f)
             {
                 Destroy(gameObject);
             }
+            // Slowly translate the power up down.
             transform.Translate(Vector2.down * Time.deltaTime * 2f);
         }
 
